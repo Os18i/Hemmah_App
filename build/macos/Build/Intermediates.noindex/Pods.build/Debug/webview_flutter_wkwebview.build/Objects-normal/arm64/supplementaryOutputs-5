@@ -1,0 +1,30 @@
+"/Users/osama/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.22.0/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/SecWrappers.swift":
+  dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecWrappers.d"
+  diagnostics: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecWrappers.dia"
+  swift-dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecWrappers.swiftdeps"
+  object: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecWrappers.o"
+  const-values: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecWrappers.swiftconstvalues"
+"/Users/osama/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.22.0/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/StructWrappers.swift":
+  const-values: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/StructWrappers.swiftconstvalues"
+  object: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/StructWrappers.o"
+  diagnostics: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/StructWrappers.dia"
+  swift-dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/StructWrappers.swiftdeps"
+  dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/StructWrappers.d"
+"/Users/osama/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.22.0/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/SecTrustProxyAPIDelegate.swift":
+  dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecTrustProxyAPIDelegate.d"
+  object: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecTrustProxyAPIDelegate.o"
+  swift-dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecTrustProxyAPIDelegate.swiftdeps"
+  diagnostics: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecTrustProxyAPIDelegate.dia"
+  const-values: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecTrustProxyAPIDelegate.swiftconstvalues"
+"/Users/osama/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.22.0/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/UIDelegateProxyAPIDelegate.swift":
+  dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/UIDelegateProxyAPIDelegate.d"
+  diagnostics: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/UIDelegateProxyAPIDelegate.dia"
+  object: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/UIDelegateProxyAPIDelegate.o"
+  swift-dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/UIDelegateProxyAPIDelegate.swiftdeps"
+  const-values: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/UIDelegateProxyAPIDelegate.swiftconstvalues"
+"/Users/osama/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.22.0/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/SecurityOriginProxyAPIDelegate.swift":
+  const-values: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecurityOriginProxyAPIDelegate.swiftconstvalues"
+  dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecurityOriginProxyAPIDelegate.d"
+  swift-dependencies: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecurityOriginProxyAPIDelegate.swiftdeps"
+  diagnostics: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecurityOriginProxyAPIDelegate.dia"
+  object: "/Users/osama/Desktop/Hemmah_App/build/macos/Build/Intermediates.noindex/Pods.build/Debug/webview_flutter_wkwebview.build/Objects-normal/arm64/SecurityOriginProxyAPIDelegate.o"

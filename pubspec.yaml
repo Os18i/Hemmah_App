@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   smooth_page_indicator: ^1.1.0
+  supabase_flutter: ^1.10.9
+  flutter_otp_text_field: ^1.1.1
   
 
 dev_dependencies:

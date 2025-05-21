@@ -1,9 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:hemmah_app/screens/forgot_password_Screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:hemmah_app/screens/home_screen.dart';
 import 'package:hemmah_app/screens/register_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final supabase = Supabase.instance.client;
+
+  Future<void> _loginUser() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('جميع الحقول مطلوبة')));
+      return;
+    }
+
+    try {
+      final response = await supabase.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+
+      final userMeta = response.user?.userMetadata;
+      final userName = userMeta?['name'] ?? 'مستخدم';
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => HomeScreen(userName: userName)),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('فشل تسجيل الدخول. البريد أو كلمة المرور غير صحيحة'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +81,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         hintText: 'البريد الالكتروني',
                         border: OutlineInputBorder(
@@ -50,6 +95,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'كلمة المرور',
@@ -64,7 +110,14 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ForgotPasswordScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'نسيت كلمة المرور؟',
                         style: TextStyle(color: Colors.grey),
@@ -81,14 +134,7 @@ class LoginScreen extends StatelessWidget {
                         elevation: 6,
                         shadowColor: Colors.black26,
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const HomeScreen(userName: ''),
-                          ),
-                        );
-                      },
+                      onPressed: _loginUser,
                       child: const Text(
                         'تسجيل',
                         style: TextStyle(fontSize: 22, color: Colors.white),

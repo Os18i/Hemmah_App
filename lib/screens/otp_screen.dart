@@ -1,7 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:hemmah_app/screens/login_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+class OtpScreen extends StatefulWidget {
+  final String email;
+
+  const OtpScreen({super.key, required this.email});
+
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  final supabase = Supabase.instance.client;
+
+  Future<void> _verifyOtp(String token) async {
+    if (token.length != 6) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('رمز غير مكتمل')));
+      return;
+    }
+
+    final response = await supabase.auth.verifyOTP(
+      type: OtpType.email,
+      email: widget.email,
+      token: token,
+    );
+
+    if (response.user != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const LoginScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('رمز غير صحيح')));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,74 +73,24 @@ class OtpScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'تم إرسال رمز مكوّن من 4 أرقام إلى بريدك الإلكتروني. الرجاء إدخاله لإكمال تسجيل الدخول.',
+                    'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الإلكتروني. الرجاء إدخاله لإكمال تسجيل الدخول.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14),
                   ),
                   const SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: List.generate(4, (index) {
-                      return SizedBox(
-                        width: 50,
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          maxLength: 1,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            counterText: '',
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
+                  OtpTextField(
+                    numberOfFields: 6,
+                    borderColor: const Color(0xFF00C180),
+                    focusedBorderColor: const Color(0xFF00C180),
+                    showFieldAsBox: true,
+                    textStyle: const TextStyle(fontSize: 18),
+                    onSubmit: _verifyOtp,
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('لم يصلك الرمز؟ '),
-                      GestureDetector(
-                        onTap: () {
-                          // تنفيذ إعادة الإرسال
-                        },
-                        child: const Text(
-                          'أعد الإرسال',
-                          style: TextStyle(
-                            color: Color(0xFF00C180),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.center),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: () {
-                      // تنفيذ الإرسال
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF00C180),
-                      minimumSize: const Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text(
-                      'إرسال',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: () => Navigator.pop(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[300],
                       minimumSize: const Size(double.infinity, 50),

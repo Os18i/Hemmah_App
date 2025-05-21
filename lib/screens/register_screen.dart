@@ -1,8 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:hemmah_app/screens/otp_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  String _selectedRole = 'buyer';
+
+  Future<void> _registerUser() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    final name = _nameController.text.trim();
+
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('جميع الحقول مطلوبة')));
+      return;
+    }
+
+    final response = await Supabase.instance.client.auth.signUp(
+      email: email,
+      password: password,
+      data: {'name': name, 'role': _selectedRole},
+    );
+
+    if (response.user != null) {
+      final userId = response.user!.id;
+
+      await Supabase.instance.client.from('users').insert({
+        'id': userId,
+        'email': email,
+        'name': name,
+        'role': _selectedRole,
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => OtpScreen(email: email)),
+      );
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('حدث خطأ أثناء التسجيل')));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +86,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     TextField(
+                      controller: _nameController,
                       decoration: InputDecoration(
                         hintText: 'الاسم',
                         border: OutlineInputBorder(
@@ -49,6 +100,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         hintText: 'البريد الالكتروني',
                         border: OutlineInputBorder(
@@ -62,6 +114,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'كلمة المرور',
@@ -74,14 +127,38 @@ class RegisterScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'نسيت كلمة المرور؟',
-                        style: TextStyle(color: Colors.grey),
-                      ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: RadioListTile<String>(
+                            title: const Text('مشتري'),
+                            value: 'buyer',
+                            groupValue: _selectedRole,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedRole = value!;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: RadioListTile<String>(
+                            title: const Text('بائع'),
+                            value: 'seller',
+                            groupValue: _selectedRole,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedRole = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 10),
+
                     const SizedBox(height: 16),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -93,12 +170,7 @@ class RegisterScreen extends StatelessWidget {
                         elevation: 6,
                         shadowColor: Colors.black26,
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => const OtpScreen()),
-                        );
-                      },
+                      onPressed: _registerUser,
                       child: const Text(
                         'إنشاء',
                         style: TextStyle(fontSize: 22, color: Colors.white),
